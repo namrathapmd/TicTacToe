@@ -1,4 +1,7 @@
 # Display Board: to display the board
+import random
+
+
 def display_board(board):
     print(f'{board[1]}  |  {board[2]}  |  {board[3]}')
     print('______________\n')
@@ -71,6 +74,14 @@ def win_check(board, mark):
     return False
 
 
+# RANDOM PLAYER: to randomly decide which player goes first. returns a string of which player went first
+def choose_first():
+
+    player = random.randint(1, 2)
+
+    return player
+
+
 # NOT TO OVERWRITE: a function that returns a boolean indicating whether a space on the board is freely available.
 def space_check(board, position):
     return board[position] == ''
@@ -101,3 +112,83 @@ def player_choice(board):
             else:
                 print('This position already has a value and cannot be replaced')
                 hasValue = True
+
+# PLAY AGAIN: function to ask the player if they want to play again and returns a boolean True
+# if they want to play again
+
+
+def replay():
+
+    wannaplay = 'wrong'
+
+    while wannaplay not in ['N', 'Y']:
+
+        wannaplay = input(
+            'Would you want to continue playing the game? Y/N: ').upper()
+
+        if wannaplay not in ['Y', 'N']:
+            print('Sorry, I dont understand, please choose Y or N')
+
+    return wannaplay == 'Y'
+
+
+###################
+#  START THE GAME #
+###################
+# calling all functions!!
+
+print("Welcome to Tic Tac Toe!!")
+
+game_on = True
+board = ['wrong', '', '', '', '', '', '', '', '', '']
+
+display_board(board)
+
+# Do you want to be player 'X' or player 'O'
+player1, player2 = player_input()
+
+# randomly choose a player to go first
+number = choose_first()
+print(f'Player {number} will go first')
+
+if number == 1:
+    player = player1
+else:
+    player = player2
+
+while game_on == True:
+    # while game_on:
+
+    # Input the position you want to play ~ from 1-9
+    position = player_choice(board)
+
+    # check if empty space is available on board
+    while (space_check(board, position) == False):
+
+        # Input the position you want to play ~ from 1-9
+        print("This position is full, choose another position")
+        position = player_choice(board)
+
+    # if available, update the board with 'X' or 'O' in the inputted position
+    board = place_marker(board, player, position)
+
+    # check to see if someone has won after each play!
+    if (win_check(board, player)):
+        print(f'GAME OVER!! {player} has won!!')
+        display_board(board)
+        break
+
+    # check if all positions are full
+    if (full_board_check(board)):
+        print('Board is full, no one wins!')
+        display_board(board)
+        break
+
+    print('Your current board')
+    display_board(board)
+
+    if (player == player1):
+        player = player2
+    else:
+        player = player1
+    game_on = replay()
