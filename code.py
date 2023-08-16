@@ -18,7 +18,7 @@ def player_input():
 
     while choice not in ['X', 'O']:
 
-        choice = input("Do you want to be player X or player O?: ").upper()
+        choice = input('Player 1: Choose X or O: ').upper()
 
     if choice == 'X':
         return ('X', 'O')
@@ -132,63 +132,74 @@ def replay():
     return wannaplay == 'Y'
 
 
-###################
-#  START THE GAME #
-###################
-# calling all functions!!
+####################
+## START THE GAME ##
+####################
 
-print("Welcome to Tic Tac Toe!!")
 
-game_on = True
-board = ['wrong', '', '', '', '', '', '', '', '', '']
+while (True):
+    # SETUP THE VARIABLES FOR THE GAME
+    print("Welcome to Tic Tac Toe!!")
 
-display_board(board)
+    board = ['wrong', '', '', '', '', '', '', '', '', '']
 
-# Do you want to be player 'X' or player 'O'
-player1, player2 = player_input()
-
-# randomly choose a player to go first
-number = choose_first()
-print(f'Player {number} will go first')
-
-if number == 1:
-    player = player1
-else:
-    player = player2
-
-while game_on == True:
-    # while game_on:
-
-    # Input the position you want to play ~ from 1-9
-    position = player_choice(board)
-
-    # check if empty space is available on board
-    while (space_check(board, position) == False):
-
-        # Input the position you want to play ~ from 1-9
-        print("This position is full, choose another position")
-        position = player_choice(board)
-
-    # if available, update the board with 'X' or 'O' in the inputted position
-    board = place_marker(board, player, position)
-
-    # check to see if someone has won after each play!
-    if (win_check(board, player)):
-        print(f'GAME OVER!! {player} has won!!')
-        display_board(board)
-        break
-
-    # check if all positions are full
-    if (full_board_check(board)):
-        print('Board is full, no one wins!')
-        display_board(board)
-        break
-
-    print('Your current board')
     display_board(board)
 
-    if (player == player1):
-        player = player2
-    else:
+    # Do you want to be player 'X' or player 'O'
+    player1, player2 = player_input()
+
+    # randomly choose a player to go first
+    number = choose_first()
+    print(f'Player {number} will go first')
+
+    if number == 1:
         player = player1
-    game_on = replay()
+    else:
+        player = player2
+
+    play_game = input('Ready to play? Y or N? ').upper()
+
+    if (play_game == 'Y'):
+        game_on = True
+    else:
+        game_on = False
+
+    # ACTUAL GAME BEGINS
+    while game_on == True:
+        # while game_on:
+
+        # Input the position you want to play ~ from 1-9
+        position = player_choice(board)
+
+        # check if empty space is available on board
+        while (space_check(board, position) == False):
+
+            # Input the position you want to play ~ from 1-9
+            print("This position is full, choose another position")
+            position = player_choice(board)
+
+        # if available, update the board with 'X' or 'O' in the inputted position
+        board = place_marker(board, player, position)
+
+        # check to see if someone has won after each play!
+        if (win_check(board, player)):
+            print(f'GAME OVER!! {player} has won!!')
+            display_board(board)
+            break
+
+        # check if all positions are full
+        if (full_board_check(board)):
+            print('Board is full, no one wins!')
+            display_board(board)
+            break
+
+        print('Your current board')
+        display_board(board)
+
+        if (player == player1):
+            player = player2
+        else:
+            player = player1
+
+    if not replay():
+        break
