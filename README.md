@@ -1,5 +1,7 @@
 # Tic-Tac-Toe Game
 ### A simple implementation of the classic Tic-Tac-Toe game in Python.
+![tictactoe_logo](https://github.com/namrathapmd/TicTacToe/assets/67475244/62acdf36-4ca6-4eee-936c-19ff36ed9d0a)
+
 
 ## Introduction
 Tic-Tac-Toe is a two-player game where each player takes turns to place their marker ('X' or 'O') on a 3x3 grid. The goal is to be the first to get three of their markers in a row, column, or diagonal.
@@ -15,30 +17,33 @@ You can choose to play again at the end of each game.
 ### Installation
 1. Clone the repository:
    
-```git clone https://github.com/namrathapmd/TicTacToe.git```
+```
+git clone https://github.com/namrathapmd/TicTacToe.git
+```
 
 2. Navigate to the project folder:
    
-```cd TicTacToe```
+```
+cd TicTacToe
+```
 
 3. Run the game:
    
-```python code.py```
+```
+python code.py
+```
 
 ### Game Screenshot
 Here's a sample of what the game looks like when running:
-
+```
 Welcome to Tic Tac Toe!!
-
-    |    |   
+   |   |   
 ______________
 
-
-    |    |   
+   |   |   
 ______________
 
-
-    |    |   
+   |   |   
 ______________
 
 Player 1: Choose X or O: X
@@ -87,7 +92,9 @@ ______________
    |   |   
 ______________
 
-...
-Author
-Your Name
+```
+
+### Author
+[Namratha Pashupathy Manjula Devi](https://github.com/namrathapmd)
+
 Enjoy the game! If you have any suggestions or find any issues, please feel free to contribute or open an issue.
